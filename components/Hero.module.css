@@ -1,0 +1,105 @@
+.hero {
+  position: relative;
+  overflow: hidden; /* clips the oversized .bg so its drift never shows an edge */
+  background: #100f0d;
+  margin-top: 0;
+}
+
+.bg {
+  position: absolute;
+  inset: -8% 0; /* taller than the section — the room the parallax drift moves within */
+  will-change: transform;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 15, 13, 0.35) 0%,
+    rgba(16, 15, 13, 0.15) 35%,
+    rgba(16, 15, 13, 0.55) 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  color: #f5f1e8;
+}
+
+.badge {
+  font-family: var(--font-sans, sans-serif);
+  /* font-size: 0.78rem; */
+  letter-spacing: 0.08em;
+  padding: 10px 22px;
+  border: 1px solid rgba(245, 241, 232, 0.55);
+  border-radius: 999px;
+  margin-bottom: 28px;
+}
+
+.headline {
+  /* font-family: var(--font-display, serif); */
+  font-weight: 500;
+  /* font-size: clamp(3rem, 9vw, 7.5rem); */
+  line-height: 0.98;
+  margin: 0 0 24px;
+}
+
+.headline em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.subhead {
+  font-family: var(--font-sans, sans-serif);
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  letter-spacing: 0.02em;
+  color: rgba(245, 241, 232, 0.85);
+  max-width: 34ch;
+  margin-top: 20px;
+}
+
+.meta {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans, sans-serif);
+}
+@media (max-width: 640px) {
+  .brand {
+    top: 24px;
+    left: 24px;
+    font-size: 1.1rem;
+  }
+  .meta {
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg {
+    inset: 0;
+  }
+}
