@@ -74,7 +74,7 @@ export interface ProductVariant {
     size: ProductSize;
     stock: number;
     price: number;
-    discountPrice?: number;
+    discountPrice: number;
 }
 
 export interface Product {
@@ -86,7 +86,6 @@ export interface Product {
     type: ProductType;
 
     price: number;
-    discountPrice?: number;
 
     variants: ProductVariant[];
 

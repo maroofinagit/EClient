@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { ShippingFormInputs } from "@/types/Cart";
 import useCartStore from "@/stores/cartStore";
 import { CartItem } from "@/types/Product";
-import { ArrowLeft, ArrowRight, ShoppingBag, ShoppingCart, Trash2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShoppingCart, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -95,6 +95,12 @@ const CartClientPage = () => {
             handleRemoveFromCart(item);
         }
     };
+
+    const discountedTotal = newCartItems.reduce((acc, item) => acc + item.productVariant.discountPrice * item.quantity, 0);
+    const total = newCartItems.reduce((acc, item) => acc + item.productVariant.price * item.quantity, 0);
+    const discountAmount = total - discountedTotal;
+    const shippingFee = newCartItems.length > 0 ? 10 : 0;
+    const finalTotal = discountedTotal + shippingFee;
 
     return (
         <div className="flex flex-col gap-8 items-center justify-center px-8 py-8 lg:px-16">
@@ -264,34 +270,37 @@ const CartClientPage = () => {
                             <p className="text-gray-500">Subtotal</p>
                             <p className="font-medium">
                                 $
-                                {cart
-                                    .reduce((acc, item) => acc + item.productVariant.price * item.quantity, 0)
-                                    .toFixed(2)}
+                                {total.toFixed(2)}
                             </p>
                         </div>
                         <div className="flex justify-between text-sm">
-                            <p className="text-gray-500">Discount(10%)</p>
-                            <p className="font-medium">$ 10</p>
+                            <p className="text-gray-500">Discount</p>
+
+                            <p className="font-medium">${discountAmount.toFixed(2)}</p>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                            <p className="text-gray-500">Discounted Total</p>
+
+                            <p className="font-medium">${discountedTotal.toFixed(2)}</p>
                         </div>
                         <div className="flex justify-between text-sm">
                             <p className="text-gray-500">Shipping Fee</p>
-                            <p className="font-medium">$10</p>
+                            <p className="font-medium">${shippingFee.toFixed(2)}</p>
                         </div>
                         <hr className="border-gray-200" />
                         <div className="flex justify-between">
                             <p className="text-gray-800 font-semibold">Total</p>
                             <p className="font-medium">
                                 $
-                                {cart
-                                    .reduce((acc, item) => acc + item.productVariant.price * item.quantity, 0)
-                                    .toFixed(2)}
+                                {finalTotal.toFixed(2)}
                             </p>
                         </div>
                     </div>
                     {activeStep === 1 ? (
                         <button
+                            disabled={newCartItems.length === 0}
                             onClick={() => router.push("/cart?step=2", { scroll: false })}
-                            className="w-full text-sm md:text-base bg-amber-800 border hover:bg-green-700 font-medium transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2"
+                            className="w-full text-sm md:text-base bg-amber-800 border hover:bg-green-700 font-medium transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-amber-800"
                         >
                             Continue
                             <ArrowRight className="w-3 h-3" />

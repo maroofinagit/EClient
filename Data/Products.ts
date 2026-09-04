@@ -8,7 +8,6 @@ export const products: Product[] = [
         gender: "Men",
         type: "T-Shirt",
         price: 899,
-        discountPrice: 699,
         variants: [
             {
                 color: {
@@ -56,7 +55,6 @@ export const products: Product[] = [
         gender: "Men",
         type: "Shirt",
         price: 1599,
-        discountPrice: 1299,
         variants: [
             {
                 color: {
@@ -104,7 +102,6 @@ export const products: Product[] = [
         gender: "Men",
         type: "Jeans",
         price: 2199,
-        discountPrice: 1799,
         variants: [
             {
                 color: {
@@ -152,7 +149,6 @@ export const products: Product[] = [
         gender: "Unisex",
         type: "Hoodie",
         price: 1999,
-        discountPrice: 1599,
         variants: [
             {
                 color: {
@@ -200,7 +196,6 @@ export const products: Product[] = [
         gender: "Women",
         type: "Dress",
         price: 2499,
-        discountPrice: 1999,
         variants: [
             {
                 color: {
@@ -248,7 +243,6 @@ export const products: Product[] = [
         gender: "Women",
         type: "Shirt",
         price: 1799,
-        discountPrice: 1399,
         variants: [
             {
                 color: {
@@ -296,7 +290,6 @@ export const products: Product[] = [
         gender: "Unisex",
         type: "Sneakers",
         price: 2999,
-        discountPrice: 2399,
         variants: [
             {
                 color: {
@@ -344,7 +337,6 @@ export const products: Product[] = [
         gender: "Men",
         type: "Running Shoes",
         price: 3999,
-        discountPrice: 3299,
         variants: [
             {
                 color: {
@@ -392,7 +384,6 @@ export const products: Product[] = [
         gender: "Men",
         type: "Formal Shoes",
         price: 3499,
-        discountPrice: 2899,
         variants: [
             {
                 color: {
@@ -440,7 +431,6 @@ export const products: Product[] = [
         gender: "Women",
         type: "Sandals",
         price: 1499,
-        discountPrice: 1199,
         variants: [
             {
                 color: {
@@ -488,7 +478,6 @@ export const products: Product[] = [
         gender: "Unisex",
         type: "Backpack",
         price: 2299,
-        discountPrice: 1899,
         variants: [
             {
                 color: {
@@ -536,7 +525,6 @@ export const products: Product[] = [
         gender: "Unisex",
         type: "Laptop Bag",
         price: 2799,
-        discountPrice: 2299,
         variants: [
             {
                 color: {
@@ -584,7 +572,6 @@ export const products: Product[] = [
         gender: "Women",
         type: "Handbag",
         price: 2999,
-        discountPrice: 2399,
         variants: [
             {
                 color: {
@@ -632,7 +619,6 @@ export const products: Product[] = [
         gender: "Unisex",
         type: "Sling Bag",
         price: 1299,
-        discountPrice: 999,
         variants: [
             {
                 color: {
@@ -680,7 +666,6 @@ export const products: Product[] = [
         gender: "Men",
         type: "Watch",
         price: 3499,
-        discountPrice: 2799,
         variants: [
             {
                 color: {
@@ -728,7 +713,6 @@ export const products: Product[] = [
         gender: "Unisex",
         type: "Sunglasses",
         price: 1499,
-        discountPrice: 1199,
         variants: [
             {
                 color: {
@@ -776,7 +760,6 @@ export const products: Product[] = [
         gender: "Men",
         type: "Belt",
         price: 999,
-        discountPrice: 799,
         variants: [
             {
                 color: {
@@ -824,7 +807,6 @@ export const products: Product[] = [
         gender: "Men",
         type: "Wallet",
         price: 1199,
-        discountPrice: 899,
         variants: [
             {
                 color: {
@@ -872,7 +854,6 @@ export const products: Product[] = [
         gender: "Women",
         type: "Watch",
         price: 3999,
-        discountPrice: 3199,
         variants: [
             {
                 color: {
@@ -920,7 +901,6 @@ export const products: Product[] = [
         gender: "Unisex",
         type: "Sunglasses",
         price: 1699,
-        discountPrice: 1299,
         variants: [
             {
                 color: {
