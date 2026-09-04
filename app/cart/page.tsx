@@ -130,7 +130,7 @@ const CartPage = () => {
                 type="button"
                 onClick={() => {
                     if (activeStep === 1) {
-                        router.push("/", { scroll: false });
+                        router.push("/products", { scroll: false });
                     } else if (activeStep === 2) {
                         router.push("/cart?step=1", { scroll: false });
                     } else if (activeStep === 3) {
@@ -151,23 +151,25 @@ const CartPage = () => {
                     {activeStep === 1 && newCartItems.length > 0 ? (
                         newCartItems.map((item) => (
                             // SINGLE CART ITEM
-                            <div className="flex flex-col gap-4" key={item.id}>
+                            <div className="flex flex-col gap-4" key={item.productVariant.size + item.productVariant.color.color}>
                                 <div
                                     className="flex md:flex-row gap-6 flex-col items-center justify-between"
-                                    key={item.id}
+                                    key={item.productVariant.size + item.productVariant.color.color}
                                 >
                                     {/* IMAGE AND DETAILS */}
                                     <div className="flex gap-8">
                                         {/* IMAGE */}
-                                        <div className="relative w-32 h-32 bg-gray-50 rounded-lg overflow-hidden">
-                                            <Image
-                                                src={item.productVariant.color.images[0]}
-                                                alt={item.productVariant.color.color}
-                                                fill
-                                                sizes=" 100%"
-                                                className="object-cover"
-                                            />
-                                        </div>
+                                        <Link href={`/products/${item.id}`} className="cursor-pointer">
+                                            <div className="relative w-32 h-42 border border-gray-200 bg-gray-50 rounded-lg overflow-hidden">
+                                                <Image
+                                                    src={item.productVariant.color.images[0]}
+                                                    alt={item.productVariant.color.color}
+                                                    fill
+                                                    sizes=" 100%"
+                                                    className="object-cover hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer"
+                                                />
+                                            </div>
+                                        </Link>
                                         {/* ITEM DETAILS */}
                                         <div className="flex flex-col justify-between">
                                             <div className="flex flex-col gap-1">

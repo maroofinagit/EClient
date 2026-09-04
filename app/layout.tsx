@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.className} ${fraunces.variable} h-full antialiased`}
     >
       <body className=" flex flex-col">
-        <Toaster richColors position="top-right" />
+        <Toaster richColors position="top-right" theme="light" />
         <Navbar />
         {children}
         <Footer />

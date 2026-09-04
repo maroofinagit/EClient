@@ -53,16 +53,16 @@ export function Categories() {
     };
 
     return (
-        <NavigationMenu className="w-full bg-amber-100 rounded-xl p-2">
+        <NavigationMenu className="w-full bg-amber-100 rounded-xl py-1 px-2 md:p-2 shadow-lg">
             <NavigationMenuList className="flex flex-nowrap items-center justify-start gap-2 md:gap-4 overflow-x-auto">
 
                 {/* ALL */}
                 <NavigationMenuItem>
                     <button
                         onClick={() => handleChange("All")}
-                        className="cursor-pointer flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-amber-800 hover:text-amber-100"
+                        className="cursor-pointer flex items-center rounded-md px-3 py-2 text-xs md:text-sm font-medium hover:bg-amber-800 hover:text-amber-100 "
                     >
-                        <FaShoppingCart className="mr-2 h-4 w-4" />
+                        <FaShoppingCart className="mr-2 size-3 md:size-4" />
                         All
                     </button>
                 </NavigationMenuItem>
@@ -70,15 +70,16 @@ export function Categories() {
                 {navigation.map((category) => {
                     const Icon = category.icon;
                     return (
-                        <NavigationMenuItem key={category.label} className="hover:bg-amber-800 hover:text-amber-100 data-[state=open]:bg-amber-800 data-[state=open]:text-amber-100 rounded-md">
+                        <NavigationMenuItem key={category.label} className="hover:bg-amber-800 hover:text-amber-100 data-[state=open]:bg-amber-800 data-[state=open]:text-amber-100 rounded-md ">
                             <NavigationMenuTrigger
+                                className="cursor-pointer font-semibold text-xs md:text-sm "
                                 onClick={() => handleChange(category.label, null, null)}
                             >
-                                <Icon className="mr-2 h-4 w-4" />
+                                <Icon className="mr-2 size-3 md:size-4" />
                                 {category.label}
                             </NavigationMenuTrigger>
 
-                            <NavigationMenuContent className=" p-5 w-full">
+                            <NavigationMenuContent className=" p-5 w-full lg:min-w-xl bg-amber-100 rounded-xl shadow-lg">
                                 <div className="grid grid-cols-4 gap-x-8 gap-y-6">
                                     {category.genders.map((gender) => (
                                         <div key={gender.label}>

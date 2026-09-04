@@ -371,13 +371,15 @@ export default function ProductList({
 
 
     return (
-        <div className="flex flex-col items-center justify-start py-10 px-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-start pt-12 pb-20 px-12 sm:px-6 lg:px-8">
             <Categories />
             <div className="mt-10">
-                <h1 className="text-2xl font-bold text-amber-800 mb-2">{params === "homepage" ? "Featured Products"
+                <h1 className=" text-lg md:text-2xl font-bold text-amber-800 mb-2">{params === "homepage" ? "Featured Products"
                     : searchParams.get("category") ? pageContent.title : "All Products"
                 }</h1>
-                <p className="text-gray-500">{params === "homepage" ? "Discover our latest collection of high-quality products" : searchParams.get("category") ? pageContent.description : "Explore our diverse range of products across all categories"}</p>
+                <p className="text-gray-500 text-sm md:text-base">
+                    {params === "homepage" ? "Discover our latest collection of high-quality products" : searchParams.get("category") ? pageContent.description : "Explore our diverse range of products across all categories"}
+                </p>
 
                 <Filter />
                 {displayedProducts.length > 0 ? (

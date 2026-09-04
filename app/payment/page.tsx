@@ -30,10 +30,10 @@ const PaymentPage = async ({
                             shopping with us!
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mx-auto w-52 md:w-full">
                             <Link
                                 href="/orders"
-                                className="flex items-center justify-center gap-2 rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white hover:bg-gray-900 transition"
+                                className="flex items-center justify-center gap-2 rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white hover:bg-gray-900 transition w-full"
                             >
                                 View Orders
                                 <ArrowRight className="w-4 h-4" />
@@ -41,7 +41,7 @@ const PaymentPage = async ({
 
                             <Link
                                 href="/"
-                                className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+                                className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition w-full"
                             >
                                 <ShoppingBag className="w-4 h-4" />
                                 Continue Shopping

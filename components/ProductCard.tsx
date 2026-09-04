@@ -55,7 +55,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         sizes[0]
     );
 
-    const { addToCart } = useCartStore();
+    const { addToCart, cart } = useCartStore();
 
     // Find the exact selected variant
     const selectedVariant = useMemo(
@@ -102,6 +102,11 @@ const ProductCard = ({ product }: { product: Product }) => {
             return;
         }
 
+        if (cart.some(item => item.id === product.id && item.productVariant.size === selectedVariant.size && item.productVariant.color.color === selectedVariant.color.color)) {
+            toast.info("This product variant is already in the cart");
+            return;
+        }
+
         console.log("Adding to cart:", {
             id: product.id,
             name: product.name,
@@ -117,7 +122,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         });
 
         toast.success(`${product.name} added to cart!`,{
-            duration: 1000,
+            duration: 1500,
         })
     };
 
@@ -156,10 +161,10 @@ const ProductCard = ({ product }: { product: Product }) => {
                 </div>
 
                 {/* PRODUCT TYPES */}
-                <div className="flex items-center gap-4 text-xs">
+                <div className="flex items-center gap-8 text-sm">
                     {/* SIZES */}
                     {sizes.length > 0 && (
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-2 ">
                             <span className="text-gray-500">Size</span>
 
                             <select
@@ -168,7 +173,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                                 onChange={(e) =>
                                     handleSizeChange(e.target.value as ProductSize)
                                 }
-                                className="rounded-md px-2 py-1 ring-1 ring-gray-300 outline-none"
+                                className="rounded-md p-2 text-xs ring-1 ring-gray-300 outline-none"
                             >
                                 {sizes.map((size) => (
                                     <option key={size} value={size}>
@@ -181,7 +186,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
                     {/* COLORS */}
                     {colors.length > 0 && (
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-2">
                             <span className="text-gray-500">Color</span>
 
                             <div className="flex items-center gap-2">
@@ -199,7 +204,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                                             }`}
                                     >
                                         <span
-                                            className="block h-3.5 w-3.5 rounded-full"
+                                            className="block h-5 w-5 rounded-full"
                                             style={{
                                                 backgroundColor: colorVariant.color,
                                             }}
@@ -224,7 +229,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                             </p>
                         )}
                     </div>
-
+                        
                     <div className="absolute bottom-4 right-4">
                         <button
                             type="button"
