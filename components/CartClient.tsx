@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Link from "next/link";
 import { BiQuestionMark } from "react-icons/bi";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "./ui/breadcrumb";
 
 const steps = [
     {
@@ -100,9 +101,9 @@ const CartClientPage = () => {
                     !(
                         cartItem.id === item.id &&
                         cartItem.productVariant.id ===
-                            item.productVariant.id &&
+                        item.productVariant.id &&
                         cartItem.productVariant.size ===
-                            item.productVariant.size
+                        item.productVariant.size
                     )
             )
         );
@@ -132,15 +133,15 @@ const CartClientPage = () => {
         setNewCartItems((prevItems) =>
             prevItems.map((cartItem) =>
                 cartItem.id === item.id &&
-                cartItem.productVariant.id ===
+                    cartItem.productVariant.id ===
                     item.productVariant.id &&
-                cartItem.productVariant.size ===
+                    cartItem.productVariant.size ===
                     item.productVariant.size
                     ? {
-                          ...cartItem,
-                          quantity:
-                              cartItem.quantity + 1,
-                      }
+                        ...cartItem,
+                        quantity:
+                            cartItem.quantity + 1,
+                    }
                     : cartItem
             )
         );
@@ -157,15 +158,15 @@ const CartClientPage = () => {
             setNewCartItems((prevItems) =>
                 prevItems.map((cartItem) =>
                     cartItem.id === item.id &&
-                    cartItem.productVariant.id ===
+                        cartItem.productVariant.id ===
                         item.productVariant.id &&
-                    cartItem.productVariant.size ===
+                        cartItem.productVariant.size ===
                         item.productVariant.size
                         ? {
-                              ...cartItem,
-                              quantity:
-                                  cartItem.quantity - 1,
-                          }
+                            ...cartItem,
+                            quantity:
+                                cartItem.quantity - 1,
+                        }
                         : cartItem
                 )
             );
@@ -182,7 +183,7 @@ const CartClientPage = () => {
         (acc, item) =>
             acc +
             item.productVariant.price *
-                item.quantity,
+            item.quantity,
         0
     );
 
@@ -203,29 +204,26 @@ const CartClientPage = () => {
             <div className="flex flex-row items-center gap-8 lg:gap-16">
                 {steps.map((step) => (
                     <div
-                        className={`flex items-center gap-2 border-b-2 pb-4 ${
-                            step.id === activeStep
-                                ? "border-gray-800"
-                                : "border-gray-200"
-                        }`}
+                        className={`flex items-center gap-2 border-b-2 pb-4 ${step.id === activeStep
+                            ? "border-gray-800"
+                            : "border-gray-200"
+                            }`}
                         key={step.id}
                     >
                         <div
-                            className={`flex h-6 w-6 items-center justify-center rounded-full p-2 text-xs text-white md:h-8 md:w-8 md:p-4 md:text-sm ${
-                                step.id === activeStep
-                                    ? "bg-gray-800"
-                                    : "bg-gray-400"
-                            }`}
+                            className={`flex h-6 w-6 items-center justify-center rounded-full p-2 text-xs text-white md:h-8 md:w-8 md:p-4 md:text-sm ${step.id === activeStep
+                                ? "bg-gray-800"
+                                : "bg-gray-400"
+                                }`}
                         >
                             {step.id}
                         </div>
 
                         <p
-                            className={`text-[10px] font-medium md:text-sm ${
-                                step.id === activeStep
-                                    ? "text-gray-800"
-                                    : "text-gray-400"
-                            }`}
+                            className={`text-[10px] font-medium md:text-sm ${step.id === activeStep
+                                ? "text-gray-800"
+                                : "text-gray-400"
+                                }`}
                         >
                             {step.title}
                         </p>
@@ -233,34 +231,61 @@ const CartClientPage = () => {
                 ))}
             </div>
 
-            {/* BACK BUTTON */}
-            <Button
-                type="button"
-                onClick={() => {
-                    if (activeStep === 1) {
-                        router.push("/products", {
-                            scroll: false,
-                        });
-                    } else if (activeStep === 2) {
-                        router.push("/cart?step=1", {
-                            scroll: false,
-                        });
-                    } else if (activeStep === 3) {
-                        router.push("/cart?step=2", {
-                            scroll: false,
-                        });
-                    }
-                }}
-                className="flex w-fit cursor-pointer items-center justify-center gap-2 self-start rounded-lg border border-amber-800 bg-white p-2 text-xs text-amber-800 transition-all duration-300 hover:bg-amber-800 hover:text-white md:text-sm"
-            >
-                <ArrowLeft className="h-3 w-3" />
+            <Breadcrumb className="w-full">
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink render={
+                            <Link href="/products" className="text-base">
+                                Products
+                            </Link>
+                        } />
+                    </BreadcrumbItem>
 
-                {activeStep === 1
-                    ? "Continue Shopping"
-                    : activeStep === 2
-                        ? "Back to Cart"
-                        : "Back to Shipping"}
-            </Button>
+                    <BreadcrumbSeparator />
+
+                    <BreadcrumbItem>
+                        {activeStep === 1 ? (
+                            <BreadcrumbPage className="text-base">Cart</BreadcrumbPage>
+                        ) : (
+                            <BreadcrumbLink render={
+                                <Link href="/cart?step=1" className="text-base">
+                                    Cart
+                                </Link>
+                            } />
+                        )}
+                    </BreadcrumbItem>
+
+                    {activeStep >= 2 && (
+                        <>
+                            <BreadcrumbSeparator />
+
+                            <BreadcrumbItem>
+                                {activeStep === 2 ? (
+                                    <BreadcrumbPage className="text-base">Shipping</BreadcrumbPage>
+                                ) : (
+                                    <BreadcrumbLink render={
+                                        <Link href="/cart?step=2" className="text-base">
+                                            Shipping
+                                        </Link>
+                                    } />
+                                )}
+                            </BreadcrumbItem>
+                        </>
+                    )}
+
+                    {activeStep >= 3 && (
+                        <>
+                            <BreadcrumbSeparator />
+
+                            <BreadcrumbItem>
+                                <BreadcrumbPage className="text-base">
+                                    Payment
+                                </BreadcrumbPage>
+                            </BreadcrumbItem>
+                        </>
+                    )}
+                </BreadcrumbList>
+            </Breadcrumb>
 
             {/* STEPS & DETAILS */}
             <div className="flex w-full flex-col gap-16 lg:flex-row">
@@ -270,7 +295,7 @@ const CartClientPage = () => {
 
                     {/* CART */}
                     {activeStep === 1 &&
-                    newCartItems.length > 0 ? (
+                        newCartItems.length > 0 ? (
                         newCartItems.map((item) => (
                             <div
                                 className="flex flex-col gap-4"
@@ -396,7 +421,7 @@ const CartClientPage = () => {
                             </div>
                         ))
                     ) : activeStep === 1 &&
-                      newCartItems.length === 0 ? (
+                        newCartItems.length === 0 ? (
 
                         /* EMPTY CART */
                         <div className="flex flex-col items-center justify-center py-10 text-center">
@@ -427,7 +452,7 @@ const CartClientPage = () => {
                         />
 
                     ) : activeStep === 3 &&
-                      shippingForm ? (
+                        shippingForm ? (
 
                         /* PAYMENT */
                         <PaymentForm
@@ -530,7 +555,7 @@ const CartClientPage = () => {
                         </button>
 
                     ) : activeStep === 3 &&
-                      shippingForm ? (
+                        shippingForm ? (
 
                         <button
                             type="button"

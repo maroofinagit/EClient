@@ -8,6 +8,7 @@ import Filter from "./Filter";
 import { SearchX } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Gender, ProductCategory, ProductType } from "@/types/Product";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "./ui/breadcrumb";
 
 export default function ProductList({
     category, gender, type, params
@@ -38,10 +39,10 @@ export default function ProductList({
                         );
 
                     case "asc":
-                        return a.price - b.price;
+                        return a.variants.map((v) => v.price).reduce((acc, price) => acc + price, 0) - b.variants.map((v) => v.price).reduce((acc, price) => acc + price, 0);
 
                     case "desc":
-                        return b.price - a.price;
+                        return b.variants.map((v) => v.price).reduce((acc, price) => acc + price, 0) - a.variants.map((v) => v.price).reduce((acc, price) => acc + price, 0);
 
                     default:
                         return 0;
@@ -76,10 +77,10 @@ export default function ProductList({
                         );
 
                     case "asc":
-                        return a.price - b.price;
+                        return a.variants.map((v) => v.price).reduce((acc, price) => acc + price, 0) - b.variants.map((v) => v.price).reduce((acc, price) => acc + price, 0);
 
                     case "desc":
-                        return b.price - a.price;
+                        return b.variants.map((v) => v.price).reduce((acc, price) => acc + price, 0) - a.variants.map((v) => v.price).reduce((acc, price) => acc + price, 0);
 
                     default:
                         return 0;
@@ -372,6 +373,22 @@ export default function ProductList({
 
     return (
         <div className="flex flex-col items-center justify-start pt-12 pb-20 px-12 sm:px-6 lg:px-8">
+
+            {params === "productspage" && (
+                <Breadcrumb className="w-full max-w-7xl mb-6">
+                    <BreadcrumbList>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbPage>Products</BreadcrumbPage>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
+            )}
+
+
             <Categories />
             <div className="mt-10">
                 <h1 className=" text-lg md:text-2xl font-bold text-amber-800 mb-2">{params === "homepage" ? "Featured Products"
