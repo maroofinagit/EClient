@@ -7,32 +7,41 @@ export const products: Product[] = [
         category: "Clothing",
         gender: "Men",
         type: "T-Shirt",
-        price: 899,
         variants: [
             {
+                id: "prod-001-var-001",
                 color: {
-                    color: "White",
-                    images: [
-                        "https://images.pexels.com/photos/12039633/pexels-photo-12039633.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "White",
+                    hex: "#FFFFFF",
                 },
-                size: "M",
-                stock: 24,
+                images: [
+                    "https://images.pexels.com/photos/12039633/pexels-photo-12039633.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "M",
+                        stock: 24,
+                    },
+                ],
                 price: 899,
-                discountPrice: 699,
             },
             {
+                id: "prod-001-var-002",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/12039633/pexels-photo-12039633.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "L",
-                stock: 18,
+                images: [
+                    "https://images.pexels.com/photos/12039633/pexels-photo-12039633.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "L",
+                        stock: 18,
+                    },
+                ],
                 price: 899,
-                discountPrice: 699,
-            },
+            }
         ],
         brand: "Urban Thread",
         material: "100% Cotton",
@@ -45,41 +54,50 @@ export const products: Product[] = [
         isFeatured: true,
         isNew: false,
         isActive: true,
+        discount: 22,
         lastUpdated: "2026-08-28",
     },
-
     {
         id: "prod-002",
         name: "Classic Oxford Casual Shirt",
         category: "Clothing",
         gender: "Men",
         type: "Shirt",
-        price: 1599,
         variants: [
             {
+                id: "prod-002-var-001",
                 color: {
-                    color: "White",
-                    images: [
-                        "https://images.pexels.com/photos/3214782/pexels-photo-3214782.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "White",
+                    hex: "#FFFFFF",
                 },
-                size: "L",
-                stock: 16,
+                images: [
+                    "https://images.pexels.com/photos/3214782/pexels-photo-3214782.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "L",
+                        stock: 16,
+                    },
+                ],
                 price: 1599,
-                discountPrice: 1299,
             },
             {
+                id: "prod-002-var-002",
                 color: {
-                    color: "Blue",
-                    images: [
-                        "https://images.pexels.com/photos/6995744/pexels-photo-6995744.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Blue",
+                    hex: "#0000FF",
                 },
-                size: "M",
-                stock: 21,
+                images: [
+                    "https://images.pexels.com/photos/6995744/pexels-photo-6995744.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "M",
+                        stock: 21,
+                    },
+                ],
                 price: 1599,
-                discountPrice: 1299,
-            },
+            }
         ],
         brand: "Northline",
         material: "Oxford Cotton",
@@ -91,42 +109,51 @@ export const products: Product[] = [
         tags: ["shirt", "oxford", "casual", "smart-casual", "cotton"],
         isFeatured: false,
         isNew: true,
-        isActive: true,
+        isActive: false,
+        discount: 19,
         lastUpdated: "2026-08-25",
     },
-
     {
         id: "prod-003",
         name: "Slim Fit Classic Denim Jeans",
         category: "Clothing",
         gender: "Men",
         type: "Jeans",
-        price: 2199,
         variants: [
             {
+                id: "prod-003-var-001",
                 color: {
-                    color: "Blue",
-                    images: [
-                        "https://images.pexels.com/photos/17630811/pexels-photo-17630811.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Blue",
+                    hex: "#0000FF",
                 },
-                size: "M",
-                stock: 14,
+                images: [
+                    "https://images.pexels.com/photos/17630811/pexels-photo-17630811.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "M",
+                        stock: 14,
+                    },
+                ],
                 price: 2199,
-                discountPrice: 1799,
             },
             {
+                id: "prod-003-var-002",
                 color: {
-                    color: "Navy Blue",
-                    images: [
-                        "https://images.pexels.com/photos/17630811/pexels-photo-17630811.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Navy Blue",
+                    hex: "#000080",
                 },
-                size: "L",
-                stock: 11,
+                images: [
+                    "https://images.pexels.com/photos/17630811/pexels-photo-17630811.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "L",
+                        stock: 11,
+                    },
+                ],
                 price: 2199,
-                discountPrice: 1799,
-            },
+            }
         ],
         brand: "Denim Republic",
         material: "Stretch Denim",
@@ -139,41 +166,50 @@ export const products: Product[] = [
         isFeatured: true,
         isNew: true,
         isActive: true,
+        discount: 18,
         lastUpdated: "2026-08-22",
     },
-
     {
         id: "prod-004",
         name: "Relaxed Fit Everyday Hoodie",
         category: "Clothing",
         gender: "Unisex",
         type: "Hoodie",
-        price: 1999,
         variants: [
             {
+                id: "prod-004-var-001",
                 color: {
-                    color: "Grey",
-                    images: [
-                        "https://images.pexels.com/photos/5781307/pexels-photo-5781307.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "White",
+                    hex: "#FFFFFF",
                 },
-                size: "L",
-                stock: 19,
+                images: [
+                    "https://images.pexels.com/photos/5781307/pexels-photo-5781307.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "L",
+                        stock: 19,
+                    },
+                ],
                 price: 1999,
-                discountPrice: 1599,
             },
             {
+                id: "prod-004-var-002",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/5781307/pexels-photo-5781307.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "XL",
-                stock: 12,
+                images: [
+                    "https://images.pexels.com/photos/5781307/pexels-photo-5781307.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "XL",
+                        stock: 12,
+                    },
+                ],
                 price: 1999,
-                discountPrice: 1599,
-            },
+            }
         ],
         brand: "Street Form",
         material: "Cotton Fleece",
@@ -186,41 +222,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: true,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-09-01",
     },
-
     {
         id: "prod-005",
         name: "Minimal Beige Midi Dress",
         category: "Clothing",
         gender: "Women",
         type: "Dress",
-        price: 2499,
         variants: [
             {
+                id: "prod-005-var-001",
                 color: {
-                    color: "Beige",
-                    images: [
-                        "https://images.pexels.com/photos/9166740/pexels-photo-9166740.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Beige",
+                    hex: "#F5F5DC",
                 },
-                size: "M",
-                stock: 13,
+                images: [
+                    "https://images.pexels.com/photos/9166740/pexels-photo-9166740.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "M",
+                        stock: 13,
+                    },
+                ],
                 price: 2499,
-                discountPrice: 1999,
             },
             {
+                id: "prod-005-var-002",
                 color: {
-                    color: "Blue",
-                    images: [
-                        "https://images.pexels.com/photos/12494299/pexels-photo-12494299.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Beige",
+                    hex: "#F5F5DC",
                 },
-                size: "L",
-                stock: 9,
+                images: [
+                    "https://images.pexels.com/photos/12494299/pexels-photo-12494299.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "L",
+                        stock: 9,
+                    },
+                ],
                 price: 2499,
-                discountPrice: 1999,
-            },
+            }
         ],
         brand: "Luna Wear",
         material: "Rayon Blend",
@@ -233,41 +278,50 @@ export const products: Product[] = [
         isFeatured: true,
         isNew: true,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-08-30",
     },
-
     {
         id: "prod-006",
         name: "Oversized Plaid Casual Shirt",
         category: "Clothing",
         gender: "Women",
         type: "Shirt",
-        price: 1799,
         variants: [
             {
+                id: "prod-006-var-001",
                 color: {
-                    color: "Red",
-                    images: [
-                        "https://images.pexels.com/photos/6995744/pexels-photo-6995744.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Red",
+                    hex: "#FF0000",
                 },
-                size: "M",
-                stock: 17,
+                images: [
+                    "https://images.pexels.com/photos/6995744/pexels-photo-6995744.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "M",
+                        stock: 17,
+                    },
+                ],
                 price: 1799,
-                discountPrice: 1399,
             },
             {
+                id: "prod-006-var-002",
                 color: {
-                    color: "Blue",
-                    images: [
-                        "https://images.pexels.com/photos/6995744/pexels-photo-6995744.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Green",
+                    hex: "#008000",
                 },
-                size: "L",
-                stock: 10,
+                images: [
+                    "https://images.pexels.com/photos/6995744/pexels-photo-6995744.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "L",
+                        stock: 10,
+                    },
+                ],
                 price: 1799,
-                discountPrice: 1399,
-            },
+            }
         ],
         brand: "Mode Studio",
         material: "Cotton Flannel",
@@ -280,41 +334,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: true,
         isActive: true,
+        discount: 22,
         lastUpdated: "2026-08-29",
     },
-
     {
         id: "prod-007",
         name: "Urban Runner Sneakers",
         category: "Shoes",
         gender: "Unisex",
         type: "Sneakers",
-        price: 2999,
         variants: [
             {
+                id: "prod-007-var-001",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/19845610/pexels-photo-19845610.jpeg",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "9",
-                stock: 15,
+                images: [
+                    "https://images.pexels.com/photos/19845610/pexels-photo-19845610.jpeg",
+                ],
+                sizes: [
+                    {
+                        size: "9",
+                        stock: 15,
+                    },
+                ],
                 price: 2999,
-                discountPrice: 2399,
             },
             {
+                id: "prod-007-var-002",
                 color: {
-                    color: "White",
-                    images: [
-                        "https://images.pexels.com/photos/13691727/pexels-photo-13691727.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "White",
+                    hex: "#FFFFFF",
                 },
-                size: "10",
-                stock: 8,
+                images: [
+                    "https://images.pexels.com/photos/13691727/pexels-photo-13691727.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "10",
+                        stock: 8,
+                    },
+                ],
                 price: 2999,
-                discountPrice: 2399,
-            },
+            }
         ],
         brand: "Stride",
         material: "Mesh & Rubber",
@@ -327,41 +390,50 @@ export const products: Product[] = [
         isFeatured: true,
         isNew: true,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-09-01",
     },
-
     {
         id: "prod-008",
         name: "Performance Running Shoes",
         category: "Shoes",
         gender: "Men",
         type: "Running Shoes",
-        price: 3999,
         variants: [
             {
+                id: "prod-008-var-001",
                 color: {
-                    color: "Blue",
-                    images: [
-                        "https://images.pexels.com/photos/9692149/pexels-photo-9692149.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Blue",
+                    hex: "#0000FF",
                 },
-                size: "9",
-                stock: 14,
+                images: [
+                    "https://images.pexels.com/photos/9692149/pexels-photo-9692149.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "9",
+                        stock: 14,
+                    },
+                ],
                 price: 3999,
-                discountPrice: 3299,
             },
             {
+                id: "prod-008-var-002",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/9692149/pexels-photo-9692149.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Red",
+                    hex: "#FF0000",
                 },
-                size: "10",
-                stock: 18,
+                images: [
+                    "https://images.pexels.com/photos/9692149/pexels-photo-9692149.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "10",
+                        stock: 18,
+                    },
+                ],
                 price: 3999,
-                discountPrice: 3299,
-            },
+            }
         ],
         brand: "AeroStep",
         material: "Engineered Mesh",
@@ -374,41 +446,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: false,
         isActive: true,
+        discount: 18,
         lastUpdated: "2026-08-24",
     },
-
     {
         id: "prod-009",
         name: "Classic Leather Formal Shoes",
         category: "Shoes",
         gender: "Men",
         type: "Formal Shoes",
-        price: 3499,
         variants: [
             {
+                id: "prod-009-var-001",
                 color: {
-                    color: "Brown",
-                    images: [
-                        "https://images.pexels.com/photos/2494607/pexels-photo-2494607.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Brown",
+                    hex: "#A52A2A",
                 },
-                size: "9",
-                stock: 7,
+                images: [
+                    "https://images.pexels.com/photos/2494607/pexels-photo-2494607.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "9",
+                        stock: 7,
+                    },
+                ],
                 price: 3499,
-                discountPrice: 2899,
             },
             {
+                id: "prod-009-var-002",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/2494607/pexels-photo-2494607.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "10",
-                stock: 11,
+                images: [
+                    "https://images.pexels.com/photos/2494607/pexels-photo-2494607.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "10",
+                        stock: 11,
+                    },
+                ],
                 price: 3499,
-                discountPrice: 2899,
-            },
+            }
         ],
         brand: "Gentleman Co.",
         material: "Genuine Leather",
@@ -421,41 +502,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: false,
         isActive: true,
+        discount: 17,
         lastUpdated: "2026-08-18",
     },
-
     {
         id: "prod-010",
         name: "Strappy Everyday Sandals",
         category: "Shoes",
         gender: "Women",
         type: "Sandals",
-        price: 1499,
         variants: [
             {
+                id: "prod-010-var-001",
                 color: {
-                    color: "Beige",
-                    images: [
-                        "https://images.pexels.com/photos/9692168/pexels-photo-9692168.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Beige",
+                    hex: "#F5F5DC",
                 },
-                size: "7",
-                stock: 13,
+                images: [
+                    "https://images.pexels.com/photos/9692168/pexels-photo-9692168.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "7",
+                        stock: 13,
+                    },
+                ],
                 price: 1499,
-                discountPrice: 1199,
             },
             {
+                id: "prod-010-var-002",
                 color: {
-                    color: "Brown",
-                    images: [
-                        "https://images.pexels.com/photos/9692168/pexels-photo-9692168.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Brown",
+                    hex: "#A52A2A",
                 },
-                size: "8",
-                stock: 16,
+                images: [
+                    "https://images.pexels.com/photos/9692168/pexels-photo-9692168.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "8",
+                        stock: 16,
+                    },
+                ],
                 price: 1499,
-                discountPrice: 1199,
-            },
+            }
         ],
         brand: "Solea",
         material: "Synthetic Leather",
@@ -468,41 +558,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: true,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-08-31",
     },
-
     {
         id: "prod-011",
         name: "Minimal City Backpack",
         category: "Bags",
         gender: "Unisex",
         type: "Backpack",
-        price: 2299,
         variants: [
             {
+                id: "prod-011-var-001",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/9712994/pexels-photo-9712994.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Medium",
-                stock: 22,
+                images: [
+                    "https://images.pexels.com/photos/9712994/pexels-photo-9712994.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 22,
+                    },
+                ],
                 price: 2299,
-                discountPrice: 1899,
             },
             {
+                id: "prod-011-var-002",
                 color: {
-                    color: "Grey",
-                    images: [
-                        "https://images.pexels.com/photos/9712994/pexels-photo-9712994.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Grey",
+                    hex: "#808080",
                 },
-                size: "Large",
-                stock: 13,
+                images: [
+                    "https://images.pexels.com/photos/9712994/pexels-photo-9712994.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Large",
+                        stock: 13,
+                    },
+                ],
                 price: 2299,
-                discountPrice: 1899,
-            },
+            }
         ],
         brand: "CarryLab",
         material: "Water-Resistant Polyester",
@@ -515,41 +614,50 @@ export const products: Product[] = [
         isFeatured: true,
         isNew: false,
         isActive: true,
+        discount: 17,
         lastUpdated: "2026-08-27",
     },
-
     {
         id: "prod-012",
         name: "Premium Laptop Backpack",
         category: "Bags",
         gender: "Unisex",
         type: "Laptop Bag",
-        price: 2799,
         variants: [
             {
+                id: "prod-012-var-001",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/14039944/pexels-photo-14039944.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Large",
-                stock: 18,
+                images: [
+                    "https://images.pexels.com/photos/14039944/pexels-photo-14039944.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Large",
+                        stock: 18,
+                    },
+                ],
                 price: 2799,
-                discountPrice: 2299,
             },
             {
+                id: "prod-012-var-002",
                 color: {
-                    color: "Brown",
-                    images: [
-                        "https://images.pexels.com/photos/14039944/pexels-photo-14039944.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Brown",
+                    hex: "#A52A2A",
                 },
-                size: "Large",
-                stock: 9,
+                images: [
+                    "https://images.pexels.com/photos/14039944/pexels-photo-14039944.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Large",
+                        stock: 9,
+                    },
+                ],
                 price: 2799,
-                discountPrice: 2299,
-            },
+            }
         ],
         brand: "Urban Carry",
         material: "Canvas & Vegan Leather",
@@ -562,41 +670,50 @@ export const products: Product[] = [
         isFeatured: true,
         isNew: true,
         isActive: true,
+        discount: 18,
         lastUpdated: "2026-09-01",
     },
-
     {
         id: "prod-013",
         name: "Elegant Everyday Handbag",
         category: "Bags",
         gender: "Women",
         type: "Handbag",
-        price: 2999,
         variants: [
             {
+                id: "prod-013-var-001",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/10280614/pexels-photo-10280614.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Medium",
-                stock: 12,
+                images: [
+                    "https://images.pexels.com/photos/10280614/pexels-photo-10280614.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 12,
+                    },
+                ],
                 price: 2999,
-                discountPrice: 2399,
             },
             {
+                id: "prod-013-var-002",
                 color: {
-                    color: "Beige",
-                    images: [
-                        "https://images.pexels.com/photos/7742547/pexels-photo-7742547.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Beige",
+                    hex: "#F5F5DC",
                 },
-                size: "Medium",
-                stock: 15,
+                images: [
+                    "https://images.pexels.com/photos/7742547/pexels-photo-7742547.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 15,
+                    },
+                ],
                 price: 2999,
-                discountPrice: 2399,
-            },
+            }
         ],
         brand: "Aurelia",
         material: "Faux Leather",
@@ -609,41 +726,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: false,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-08-26",
     },
-
     {
         id: "prod-014",
         name: "Compact Urban Sling Bag",
         category: "Bags",
         gender: "Unisex",
         type: "Sling Bag",
-        price: 1299,
         variants: [
             {
+                id: "prod-014-var-001",
                 color: {
-                    color: "Olive",
-                    images: [
-                        "https://images.pexels.com/photos/27911168/pexels-photo-27911168.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Olive",
+                    hex: "#556B2F",
                 },
-                size: "Small",
-                stock: 25,
+                images: [
+                    "https://images.pexels.com/photos/27911168/pexels-photo-27911168.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Small",
+                        stock: 25,
+                    },
+                ],
                 price: 1299,
-                discountPrice: 999,
             },
             {
+                id: "prod-014-var-002",
                 color: {
-                    color: "Orange",
-                    images: [
-                        "https://images.pexels.com/photos/27911168/pexels-photo-27911168.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Orange",
+                    hex: "#FFA500",
                 },
-                size: "Small",
-                stock: 8,
+                images: [
+                    "https://images.pexels.com/photos/27911168/pexels-photo-27911168.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Small",
+                        stock: 8,
+                    },
+                ],
                 price: 1299,
-                discountPrice: 999,
-            },
+            }
         ],
         brand: "Packsmith",
         material: "Canvas",
@@ -656,41 +782,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: true,
         isActive: true,
+        discount: 23,
         lastUpdated: "2026-08-30",
     },
-
     {
         id: "prod-015",
         name: "Classic Minimal Wristwatch",
         category: "Accessories",
         gender: "Men",
         type: "Watch",
-        price: 3499,
         variants: [
             {
+                id: "prod-015-var-001",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/3829442/pexels-photo-3829442.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Medium",
-                stock: 14,
+                images: [
+                    "https://images.pexels.com/photos/3829442/pexels-photo-3829442.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 14,
+                    },
+                ],
                 price: 3499,
-                discountPrice: 2799,
             },
             {
+                id: "prod-015-var-002",
                 color: {
-                    color: "Brown",
-                    images: [
-                        "https://images.pexels.com/photos/10561891/pexels-photo-10561891.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Brown",
+                    hex: "#A52A2A",
                 },
-                size: "Medium",
-                stock: 9,
+                images: [
+                    "https://images.pexels.com/photos/10561891/pexels-photo-10561891.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 9,
+                    },
+                ],
                 price: 3499,
-                discountPrice: 2799,
-            },
+            }
         ],
         brand: "Chrona",
         material: "Stainless Steel & Leather",
@@ -703,41 +838,50 @@ export const products: Product[] = [
         isFeatured: true,
         isNew: false,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-08-20",
     },
-
     {
         id: "prod-016",
         name: "Modern Black Frame Sunglasses",
         category: "Accessories",
         gender: "Unisex",
         type: "Sunglasses",
-        price: 1499,
         variants: [
             {
+                id: "prod-016-var-001",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/5583998/pexels-photo-5583998.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Medium",
-                stock: 27,
+                images: [
+                    "https://images.pexels.com/photos/5583998/pexels-photo-5583998.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 27,
+                    },
+                ],
                 price: 1499,
-                discountPrice: 1199,
             },
             {
+                id: "prod-016-var-002",
                 color: {
-                    color: "Brown",
-                    images: [
-                        "https://images.pexels.com/photos/1034843/pexels-photo-1034843.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Brown",
+                    hex: "#A52A2A",
                 },
-                size: "Medium",
-                stock: 16,
+                images: [
+                    "https://images.pexels.com/photos/1034843/pexels-photo-1034843.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 16,
+                    },
+                ],
                 price: 1499,
-                discountPrice: 1199,
-            },
+            }
         ],
         brand: "Vista",
         material: "Acetate",
@@ -750,41 +894,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: true,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-08-29",
     },
-
     {
         id: "prod-017",
         name: "Full Grain Leather Belt",
         category: "Accessories",
         gender: "Men",
         type: "Belt",
-        price: 999,
         variants: [
             {
+                id: "prod-017-var-001",
                 color: {
-                    color: "Brown",
-                    images: [
-                        "https://images.pexels.com/photos/32734334/pexels-photo-32734334.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Brown",
+                    hex: "#A52A2A",
                 },
-                size: "Medium",
-                stock: 21,
+                images: [
+                    "https://images.pexels.com/photos/32734334/pexels-photo-32734334.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 21,
+                    },
+                ],
                 price: 999,
-                discountPrice: 799,
             },
             {
+                id: "prod-017-var-002",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/32734334/pexels-photo-32734334.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Large",
-                stock: 17,
+                images: [
+                    "https://images.pexels.com/photos/32734334/pexels-photo-32734334.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Large",
+                        stock: 17,
+                    },
+                ],
                 price: 999,
-                discountPrice: 799,
-            },
+            }
         ],
         brand: "Craft & Hide",
         material: "Full Grain Leather",
@@ -797,41 +950,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: false,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-08-17",
     },
-
     {
         id: "prod-018",
         name: "Slim Everyday Leather Wallet",
         category: "Accessories",
         gender: "Men",
         type: "Wallet",
-        price: 1199,
         variants: [
             {
+                id: "prod-018-var-001",
                 color: {
-                    color: "Brown",
-                    images: [
-                        "https://images.pexels.com/photos/2494607/pexels-photo-2494607.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Brown",
+                    hex: "#A52A2A",
                 },
-                size: "Small",
-                stock: 23,
+                images: [
+                    "https://images.pexels.com/photos/2494607/pexels-photo-2494607.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Small",
+                        stock: 23,
+                    },
+                ],
                 price: 1199,
-                discountPrice: 899,
             },
             {
+                id: "prod-018-var-002",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/2494607/pexels-photo-2494607.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Small",
-                stock: 19,
+                images: [
+                    "https://images.pexels.com/photos/2494607/pexels-photo-2494607.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Small",
+                        stock: 19,
+                    },
+                ],
                 price: 1199,
-                discountPrice: 899,
-            },
+            }
         ],
         brand: "Leather Works",
         material: "Genuine Leather",
@@ -844,41 +1006,50 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: false,
         isActive: true,
+        discount: 25,
         lastUpdated: "2026-08-15",
     },
-
     {
         id: "prod-019",
         name: "Contemporary Statement Watch",
         category: "Accessories",
         gender: "Women",
         type: "Watch",
-        price: 3999,
         variants: [
             {
+                id: "prod-019-var-001",
                 color: {
-                    color: "White",
-                    images: [
-                        "https://images.pexels.com/photos/7470851/pexels-photo-7470851.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "White",
+                    hex: "#FFFFFF",
                 },
-                size: "Medium",
-                stock: 11,
+                images: [
+                    "https://images.pexels.com/photos/7470851/pexels-photo-7470851.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 11,
+                    },
+                ],
                 price: 3999,
-                discountPrice: 3199,
             },
             {
+                id: "prod-019-var-002",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/7470851/pexels-photo-7470851.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Medium",
-                stock: 7,
+                images: [
+                    "https://images.pexels.com/photos/7470851/pexels-photo-7470851.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 7,
+                    },
+                ],
                 price: 3999,
-                discountPrice: 3199,
-            },
+            }
         ],
         brand: "Elora",
         material: "Stainless Steel",
@@ -891,41 +1062,50 @@ export const products: Product[] = [
         isFeatured: true,
         isNew: true,
         isActive: true,
+        discount: 20,
         lastUpdated: "2026-09-01",
     },
-
     {
         id: "prod-020",
         name: "Classic Reflective Sunglasses",
         category: "Accessories",
         gender: "Unisex",
         type: "Sunglasses",
-        price: 1699,
         variants: [
             {
+                id: "prod-020-var-001",
                 color: {
-                    color: "Yellow",
-                    images: [
-                        "https://images.pexels.com/photos/255305/pexels-photo-255305.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Yellow",
+                    hex: "#FFFF00",
                 },
-                size: "Medium",
-                stock: 18,
+                images: [
+                    "https://images.pexels.com/photos/255305/pexels-photo-255305.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 18,
+                    },
+                ],
                 price: 1699,
-                discountPrice: 1299,
             },
             {
+                id: "prod-020-var-002",
                 color: {
-                    color: "Black",
-                    images: [
-                        "https://images.pexels.com/photos/9694176/pexels-photo-9694176.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    ],
+                    name: "Black",
+                    hex: "#000000",
                 },
-                size: "Medium",
-                stock: 14,
+                images: [
+                    "https://images.pexels.com/photos/9694176/pexels-photo-9694176.jpeg?auto=compress&cs=tinysrgb&w=800",
+                ],
+                sizes: [
+                    {
+                        size: "Medium",
+                        stock: 14,
+                    },
+                ],
                 price: 1699,
-                discountPrice: 1299,
-            },
+            }
         ],
         brand: "Raymont",
         material: "Polycarbonate",
@@ -938,6 +1118,7 @@ export const products: Product[] = [
         isFeatured: false,
         isNew: true,
         isActive: true,
+        discount: 24,
         lastUpdated: "2026-08-30",
-    },
+    }
 ];

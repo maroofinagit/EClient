@@ -5,7 +5,6 @@ import {
     Product,
     ProductColor,
     ProductSize,
-    ProductVariantColor,
 } from "@/types/Product";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
@@ -21,7 +20,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             Array.from(
                 new Map(
                     product.variants.map((variant) => [
-                        variant.color.color,
+                        variant.color.name,
                         variant.color,
                     ])
                 ).values()
@@ -30,14 +29,14 @@ const ProductCard = ({ product }: { product: Product }) => {
     );
 
     const [selectedColor, setSelectedColor] = useState<ProductColor>(
-        colors[0]?.color
+        colors[0]?.name
     );
 
-    // Get variants available for the selected color
-    const colorVariants = useMemo(
+    // Get the variant for the selected color
+    const selectedColorVariant = useMemo(
         () =>
-            product.variants.filter(
-                (variant) => variant.color.color === selectedColor
+            product.variants.find(
+                (variant) => variant.color.name === selectedColor
             ),
         [product.variants, selectedColor]
     );
@@ -45,10 +44,10 @@ const ProductCard = ({ product }: { product: Product }) => {
     // Get sizes available for the selected color
     const sizes = useMemo(
         () =>
-            Array.from(
-                new Set(colorVariants.map((variant) => variant.size))
-            ) as ProductSize[],
-        [colorVariants]
+            selectedColorVariant?.sizes.map(
+                (sizeVariant) => sizeVariant.size
+            ) ?? [],
+        [selectedColorVariant]
     );
 
     const [selectedSize, setSelectedSize] = useState<ProductSize>(
@@ -57,32 +56,28 @@ const ProductCard = ({ product }: { product: Product }) => {
 
     const { addToCart, cart } = useCartStore();
 
-    // Find the exact selected variant
-    const selectedVariant = useMemo(
+    // Find stock for selected size
+    const selectedSizeVariant = useMemo(
         () =>
-            colorVariants.find(
-                (variant) => variant.size === selectedSize
+            selectedColorVariant?.sizes.find(
+                (sizeVariant) => sizeVariant.size === selectedSize
             ),
-        [colorVariants, selectedSize]
+        [selectedColorVariant, selectedSize]
     );
-
-    // Selected color's images
-    const selectedColorVariant = colors.find(
-        (color) => color.color === selectedColor
-    );
-
-    const image =
-        selectedColorVariant?.images[0] ?? "/placeholder.png";
 
     const handleColorChange = (color: ProductColor) => {
         setSelectedColor(color);
 
-        // Reset size to the first available size for the new color
-        const newSizes = product.variants
-            .filter((variant) => variant.color.color === color)
-            .map((variant) => variant.size);
+        // Get the new color variant
+        const newVariant = product.variants.find(
+            (variant) => variant.color.name === color
+        );
 
-        setSelectedSize(newSizes[0]);
+        // Reset size to the first available size
+        const newSize = newVariant?.sizes[0]?.size;
+        if (newSize !== undefined) {
+            setSelectedSize(newSize);
+        }
     };
 
     const handleSizeChange = (size: ProductSize) => {
@@ -90,53 +85,58 @@ const ProductCard = ({ product }: { product: Product }) => {
     };
 
     const handleAddToCart = () => {
-
-        console.log("Selected Variant:", selectedVariant);
-        if (!selectedVariant) {
+        if (!selectedColorVariant || !selectedSizeVariant) {
             toast.error("Selected variant is not available");
             return;
         }
 
-        if (selectedVariant.stock <= 0) {
-            toast.error("Selected variant is out of stock");
+        if (selectedSizeVariant.stock <= 0) {
+            toast.error("Selected size is out of stock");
             return;
         }
 
-        if (cart.some(item => item.id === product.id && item.productVariant.size === selectedVariant.size && item.productVariant.color.color === selectedVariant.color.color)) {
+        const alreadyInCart = cart.some(
+            (item) =>
+                item.id === product.id &&
+                item.productVariant.id === selectedColorVariant.id &&
+                item.productVariant.size === selectedSize
+        );
+
+        if (alreadyInCart) {
             toast.info("This product variant is already in the cart");
             return;
         }
 
-        console.log("Adding to cart:", {
-            id: product.id,
-            name: product.name,
-            productVariant: selectedVariant,
-            quantity: 1,
-        });
-
         addToCart({
             id: product.id,
             name: product.name,
-            productVariant: selectedVariant,
+            productVariant: {
+                ...selectedColorVariant,
+                size: selectedSize,
+            },
             quantity: 1,
         });
 
-        toast.success(`${product.name} added to cart!`,{
+        toast.success(`${product.name} added to cart!`, {
             duration: 1500,
-        })
+        });
     };
 
-    const displayPrice =
-        selectedVariant?.discountPrice ?? selectedVariant?.price ?? product.price;
+    const image =
+        selectedColorVariant?.images[0] ?? "/placeholder.png";
+
+    const displayPrice = selectedColorVariant?.price ?? 0;
 
     return (
-        <div className="overflow-hidden relative rounded-lg shadow-lg">
+        <div className="relative overflow-hidden rounded-lg shadow-lg">
 
+            {/* NEW BADGE */}
             {product.isNew && (
-                <Badge className="absolute top-2 left-2 z-10 bg-red-600 text-white px-2 py-1 text-xs font-semibold rounded-md shadow-md shadow-gray-600">
+                <Badge className="absolute top-2 left-2 z-10 rounded-md bg-red-600 px-2 py-1 text-xs font-semibold text-white shadow-md shadow-gray-600">
                     New
                 </Badge>
             )}
+
             {/* IMAGE */}
             <Link href={`/products/${product.id}`}>
                 <div className="relative aspect-4/5 overflow-hidden">
@@ -152,31 +152,43 @@ const ProductCard = ({ product }: { product: Product }) => {
 
             {/* PRODUCT DETAIL */}
             <div className="flex flex-col gap-4 p-4">
+
+                {/* NAME + DESCRIPTION */}
                 <div>
-                    <h2 className="font-medium">{product.name}</h2>
+                    <h2 className="font-medium">
+                        {product.name}
+                    </h2>
 
                     <p className="mt-1 text-sm text-gray-500">
                         {product.shortDescription}
                     </p>
                 </div>
 
-                {/* PRODUCT TYPES */}
+                {/* SIZE + COLOR */}
                 <div className="flex items-center gap-8 text-sm">
+
                     {/* SIZES */}
                     {sizes.length > 0 && (
-                        <div className="flex flex-col gap-2 ">
-                            <span className="text-gray-500">Size</span>
+                        <div className="flex flex-col gap-2">
+                            <span className="text-gray-500">
+                                Size
+                            </span>
 
                             <select
                                 name={`size-${product.id}`}
                                 value={selectedSize}
                                 onChange={(e) =>
-                                    handleSizeChange(e.target.value as ProductSize)
+                                    handleSizeChange(
+                                        e.target.value as ProductSize
+                                    )
                                 }
                                 className="rounded-md p-2 text-xs ring-1 ring-gray-300 outline-none"
                             >
                                 {sizes.map((size) => (
-                                    <option key={size} value={size}>
+                                    <option
+                                        key={size}
+                                        value={size}
+                                    >
                                         {size.toUpperCase()}
                                     </option>
                                 ))}
@@ -187,26 +199,31 @@ const ProductCard = ({ product }: { product: Product }) => {
                     {/* COLORS */}
                     {colors.length > 0 && (
                         <div className="flex flex-col gap-2">
-                            <span className="text-gray-500">Color</span>
+                            <span className="text-gray-500">
+                                Color
+                            </span>
 
                             <div className="flex items-center gap-2">
-                                {colors.map((colorVariant) => (
+                                {colors.map((color) => (
                                     <button
                                         type="button"
-                                        key={colorVariant.color}
-                                        aria-label={`Select ${colorVariant.color}`}
+                                        key={color.name}
+                                        aria-label={`Select ${color.name}`}
                                         onClick={() =>
-                                            handleColorChange(colorVariant.color)
+                                            handleColorChange(
+                                                color.name
+                                            )
                                         }
-                                        className={`cursor-pointer rounded-full border p-[1.2px] transition-all ${selectedColor === colorVariant.color
-                                            ? "border-gray-500"
-                                            : "border-gray-200"
+                                        className={`cursor-pointer rounded-full border p-[1.2px] transition-all ${selectedColor === color.name
+                                                ? "border-gray-500"
+                                                : "border-gray-200"
                                             }`}
                                     >
                                         <span
                                             className="block h-5 w-5 rounded-full"
                                             style={{
-                                                backgroundColor: colorVariant.color,
+                                                backgroundColor:
+                                                    color.hex,
                                             }}
                                         />
                                     </button>
@@ -216,30 +233,24 @@ const ProductCard = ({ product }: { product: Product }) => {
                     )}
                 </div>
 
-                {/* PRICE AND ADD TO CART */}
+                {/* PRICE + ADD TO CART */}
                 <div className="flex items-center justify-between">
+
                     <div className="flex items-center gap-2">
                         <p className="font-medium">
                             ₹{displayPrice.toFixed(2)}
                         </p>
-
-                        {selectedVariant?.discountPrice && (
-                            <p className="text-sm text-gray-400 line-through">
-                                ₹{selectedVariant.price.toFixed(2)}
-                            </p>
-                        )}
                     </div>
-                        
-                    <div className="absolute bottom-4 right-4">
+
+                    <div className="absolute right-4 bottom-4">
                         <button
                             type="button"
                             onClick={handleAddToCart}
-                            className="flex cursor-pointer items-center gap-2 rounded-md border border-amber-800 px-3 py-2 text-sm text-amber-800  hover:text-white transition-all hover:bg-amber-800"
+                            className="flex cursor-pointer items-center gap-2 rounded-md border border-amber-800 px-3 py-2 text-sm text-amber-800 transition-all hover:bg-amber-800 hover:text-white"
                         >
                             <ShoppingCart size={20} />
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>

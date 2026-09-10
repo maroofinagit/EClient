@@ -1,11 +1,7 @@
 import ProductClientPage from "@/components/ProductClient";
-import ProductInteraction from "@/components/ProductInteraction";
 import { products } from "@/Data/Products";
 import { Product } from "@/types/Product";
-import { ArrowLeft, Share2 } from "lucide-react";
 import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 
 export async function generateMetadata({
     params,
@@ -14,13 +10,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { id } = await params;
 
-    const product: Product = products.find((p) => p.id === id) as Product;
+    const product = products.find((p) => p.id === id);
+
     const BASE_URL = "https://cybermart.wordcel.app";
 
     if (!product) {
         return {
             title: "Product Not Found | Cyber Mart",
-            description: "The product you're looking for could not be found.",
+            description:
+                "The product you're looking for could not be found.",
         };
     }
 
@@ -30,7 +28,7 @@ export async function generateMetadata({
     const images = [
         ...new Set(
             product.variants.flatMap(
-                (variant) => variant.color.images
+                (variant) => variant.images
             )
         ),
     ];
@@ -38,7 +36,8 @@ export async function generateMetadata({
     return {
         title: `${product.name} | ${product.brand} | Cyber Mart`,
 
-        description: product.shortDescription || product.description,
+        description:
+            product.shortDescription || product.description,
 
         keywords: [
             product.name,
@@ -81,7 +80,7 @@ export async function generateMetadata({
             description:
                 product.shortDescription || product.description,
 
-            images: images,
+            images,
         },
 
         robots: {
@@ -95,28 +94,44 @@ const ProductPage = async ({
     params,
 }: {
     params: Promise<{ id: string }>;
-    searchParams: Promise<{ color: string; size: string }>;
 }) => {
+    const { id } = await params;
 
-    const productId = (await params).id;
+    const product = products.find(
+        (p) => p.id === id
+    );
 
-    const product: Product = products.find((p) => p.id === productId) as Product;
+    if (!product) {
+        return null;
+    }
 
     const BASE_URL = "https://cybermart.wordcel.app";
+
     const productUrl = `${BASE_URL}/products/${product.id}`;
 
+    // Variants that have at least one size
     const availableVariants = product.variants.filter(
-        (variant) => variant.stock > 0
+        (variant) =>
+            variant.sizes.some(
+                (sizeVariant) => sizeVariant.stock > 0
+            )
     );
 
     // Get unique product images from all variants
     const images = [
         ...new Set(
             product.variants.flatMap(
-                (variant) => variant.color.images
+                (variant) => variant.images
             )
         ),
     ];
+
+    // Use the cheapest variant price for structured data
+    const prices = product.variants.map(
+        (variant) => variant.price
+    );
+
+    const minPrice = Math.min(...prices);
 
     const productJsonLd = {
         "@context": "https://schema.org",
@@ -146,7 +161,7 @@ const ProductPage = async ({
 
             priceCurrency: "INR",
 
-            price: product.price.toFixed(2),
+            price: minPrice.toFixed(2),
 
             availability:
                 availableVariants.length > 0
@@ -173,7 +188,6 @@ const ProductPage = async ({
                 : undefined,
     };
 
-
     return (
         <div>
             <script
@@ -186,7 +200,6 @@ const ProductPage = async ({
             <ProductClientPage product={product} />
         </div>
     );
-}
-
+};
 
 export default ProductPage;

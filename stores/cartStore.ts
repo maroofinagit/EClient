@@ -1,39 +1,69 @@
-import { CartStoreActionsType, CartStoreStateType } from "@/types/Cart";
+import {
+    CartStoreActionsType,
+    CartStoreStateType,
+} from "@/types/Cart";
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import {
+    persist,
+    createJSONStorage,
+} from "zustand/middleware";
 
-const useCartStore = create<CartStoreStateType & CartStoreActionsType>()(
+const useCartStore = create<
+    CartStoreStateType & CartStoreActionsType
+>()(
     persist(
         (set) => ({
             cart: [],
             hasHydrated: false,
 
+            // -----------------------------
+            // ADD TO CART
+            // -----------------------------
+
             addToCart: (product) =>
                 set((state) => {
-                    const existingIndex = state.cart.findIndex(
-                        (p) =>
-                            p.id === product.id &&
-                            p.productVariant.size ===
-                            product.productVariant.size &&
-                            p.productVariant.color.color ===
-                            product.productVariant.color.color
-                    );
+                    const existingIndex =
+                        state.cart.findIndex(
+                            (item) =>
+                                item.id === product.id &&
+                                item.productVariant.id ===
+                                    product.productVariant.id &&
+                                item.productVariant.size ===
+                                    product.productVariant.size
+                        );
 
+                    // Already exists
                     if (existingIndex !== -1) {
-                        const updatedCart = [...state.cart];
+                        const updatedCart = [
+                            ...state.cart,
+                        ];
 
-                        updatedCart[existingIndex].quantity +=
-                            product.quantity || 1;
+                        updatedCart[
+                            existingIndex
+                        ] = {
+                            ...updatedCart[
+                                existingIndex
+                            ],
+                            quantity:
+                                updatedCart[
+                                    existingIndex
+                                ].quantity +
+                                (product.quantity || 1),
+                        };
 
-                        return { cart: updatedCart };
+                        return {
+                            cart: updatedCart,
+                        };
                     }
 
+                    // New item
                     return {
                         cart: [
                             ...state.cart,
                             {
                                 ...product,
-                                quantity: product.quantity || 1,
+                                quantity:
+                                    product.quantity || 1,
                                 productVariant: {
                                     ...product.productVariant,
                                 },
@@ -42,67 +72,113 @@ const useCartStore = create<CartStoreStateType & CartStoreActionsType>()(
                     };
                 }),
 
+            // -----------------------------
+            // ADD QUANTITY
+            // -----------------------------
+
             addQuantityToCart: (product) =>
                 set((state) => ({
-                    cart: state.cart.map((item) =>
-                        item.id === product.id &&
-                            item.productVariant.size === product.productVariant.size &&
-                            item.productVariant.color.color ===
-                            product.productVariant.color.color
-                            ? {
-                                ...item,
-                                quantity: item.quantity + 1,
-                            }
-                            : item
+                    cart: state.cart.map(
+                        (item) =>
+                            item.id === product.id &&
+                            item.productVariant.id ===
+                                product.productVariant.id &&
+                            item.productVariant.size ===
+                                product.productVariant.size
+                                ? {
+                                      ...item,
+                                      quantity:
+                                          item.quantity + 1,
+                                  }
+                                : item
                     ),
                 })),
+
+            // -----------------------------
+            // REMOVE ITEM
+            // -----------------------------
 
             removeFromCart: (product) =>
                 set((state) => ({
                     cart: state.cart.filter(
-                        (p) =>
+                        (item) =>
                             !(
-                                p.id === product.id &&
-                                p.productVariant.size ===
-                                product.productVariant.size &&
-                                p.productVariant.color.color ===
-                                product.productVariant.color.color
+                                item.id === product.id &&
+                                item.productVariant.id ===
+                                    product.productVariant.id &&
+                                item.productVariant.size ===
+                                    product.productVariant.size
                             )
                     ),
                 })),
 
+            // -----------------------------
+            // REMOVE QUANTITY
+            // -----------------------------
+
             removeQuantityFromCart: (product) =>
                 set((state) => {
-                    const existingIndex = state.cart.findIndex(
-                        (p) =>
-                            p.id === product.id &&
-                            p.productVariant.size ===
-                            product.productVariant.size &&
-                            p.productVariant.color.color ===
-                            product.productVariant.color.color
-                    );
+                    const existingIndex =
+                        state.cart.findIndex(
+                            (item) =>
+                                item.id === product.id &&
+                                item.productVariant.id ===
+                                    product.productVariant.id &&
+                                item.productVariant.size ===
+                                    product.productVariant.size
+                        );
 
-                    if (existingIndex !== -1) {
-                        const updatedCart = [...state.cart];
-
-                        if (updatedCart[existingIndex].quantity > 1) {
-                            updatedCart[existingIndex].quantity -= 1;
-                        } else {
-                            updatedCart.splice(existingIndex, 1);
-                        }
-
-                        return { cart: updatedCart };
+                    if (existingIndex === -1) {
+                        return state;
                     }
 
-                    return state;
+                    const updatedCart = [
+                        ...state.cart,
+                    ];
+
+                    if (
+                        updatedCart[existingIndex]
+                            .quantity > 1
+                    ) {
+                        updatedCart[
+                            existingIndex
+                        ] = {
+                            ...updatedCart[
+                                existingIndex
+                            ],
+                            quantity:
+                                updatedCart[
+                                    existingIndex
+                                ].quantity - 1,
+                        };
+                    } else {
+                        updatedCart.splice(
+                            existingIndex,
+                            1
+                        );
+                    }
+
+                    return {
+                        cart: updatedCart,
+                    };
                 }),
 
-            clearCart: () => set({ cart: [] }),
+            // -----------------------------
+            // CLEAR CART
+            // -----------------------------
+
+            clearCart: () =>
+                set({
+                    cart: [],
+                }),
         }),
 
         {
             name: "cart",
-            storage: createJSONStorage(() => localStorage),
+
+            storage: createJSONStorage(
+                () => localStorage
+            ),
 
             onRehydrateStorage: () => (state) => {
                 if (state) {

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import styles from "./Hero.module.css";
-import {  Playfair_Display } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -59,7 +59,7 @@ export default function Hero() {
 
   return (
     <section ref={sectionRef} className={`${styles.hero} h-[60vh] md:h-[80vh]`}>
-      <motion.div className={styles.bg} style={{ y: bgY }}>
+      {/* <motion.div className={styles.bg} style={{ y: bgY }}>
         <Image
           src="/heroBanner.png"
           alt=""
@@ -68,6 +68,20 @@ export default function Hero() {
           sizes="100vw"
           className={styles.bgImage}
         />
+        <div className={styles.bgOverlay} />
+      </motion.div> */}
+
+      <motion.div className={styles.bg} style={{ y: bgY }}>
+        <video
+          src="/videoBanner.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/heroBanner.png"
+          className={styles.bgVideo}
+        />
+
         <div className={styles.bgOverlay} />
       </motion.div>
 
@@ -78,11 +92,11 @@ export default function Hero() {
 
         <span className={`text-base tracking-[-0.12em] ${styles.badge}`}>LIMITED TIME OFFER</span>
 
-        <motion.h1 
+        <motion.h1
           initial={{ y: -50, opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           whileInView={{ y: 0, opacity: 1 }}
-        className={` ${playfair.className} tracking-[-0.12em] text-2xl md:text-[6rem] ${styles.headline}`} style={{ scale, opacity }}>
+          className={` ${playfair.className} tracking-[-0.12em] text-2xl md:text-[6rem] ${styles.headline}`} style={{ scale, opacity }}>
           Elevate Your <em>Style</em>
         </motion.h1>
 
