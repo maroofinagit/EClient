@@ -2,13 +2,11 @@
 
 import PaymentForm from "@/components/PaymentForm";
 import ShippingForm from "@/components/ShippingForm";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ShippingFormInputs } from "@/types/Cart";
 import useCartStore from "@/stores/cartStore";
 import { CartItem } from "@/types/Product";
 import {
-    ArrowLeft,
     ArrowRight,
     ShoppingCart,
     Trash2,
@@ -45,10 +43,12 @@ const CartClientPage = () => {
 
     const {
         cart,
+        hasHydrated,
         removeFromCart,
         removeQuantityFromCart,
         addQuantityToCart,
     } = useCartStore();
+    
 
     const [newCartItems, setNewCartItems] =
         useState<CartItem[]>(cart);
@@ -191,6 +191,14 @@ const CartClientPage = () => {
         newCartItems.length > 0 ? 10 : 0;
 
     const finalTotal = total + shippingFee;
+
+    if (!hasHydrated) {
+        return (
+            <div className="flex min-h-[70vh] items-center justify-center">
+                Loading cart...
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col items-center justify-center gap-8 px-8 py-8 lg:px-16">
