@@ -36,16 +36,17 @@ export default function Navbar() {
                     {/* Mobile Menu */}
                     <Sheet>
 
-                        <SheetTrigger render={
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="lg:hidden"
-                                aria-label="Open navigation menu"
-                            >
-                                <Menu className="size-5" />
-                            </Button>
-                        } />
+                        <SheetTrigger
+                            render={
+                                <button
+                                    type="button"
+                                    aria-label="Open navigation menu"
+                                    className="inline-flex size-9 items-center justify-center rounded-md transition hover:bg-gray-100 lg:hidden"
+                                >
+                                    <Menu className="size-5" />
+                                </button>
+                            }
+                        />
 
                         <SheetContent
                             side="left"
