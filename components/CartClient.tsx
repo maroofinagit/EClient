@@ -48,7 +48,7 @@ const CartClientPage = () => {
         removeQuantityFromCart,
         addQuantityToCart,
     } = useCartStore();
-    
+
 
     const [newCartItems, setNewCartItems] =
         useState<CartItem[]>(cart);
@@ -321,17 +321,8 @@ const CartClientPage = () => {
                                         >
                                             <div className="relative h-42 w-32 overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
                                                 <Image
-                                                    src={
-                                                        item
-                                                            .productVariant
-                                                            .images[0]
-                                                    }
-                                                    alt={
-                                                        item
-                                                            .productVariant
-                                                            .color
-                                                            .name
-                                                    }
+                                                    src={item.productVariant.images?.[0] || "/placeholder.png"}
+                                                    alt={item.productVariant.color.name}
                                                     fill
                                                     sizes="100%"
                                                     className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
