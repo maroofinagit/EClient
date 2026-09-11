@@ -11,12 +11,15 @@ export default function robots(): MetadataRoute.Robots {
                 "/admin/",
                 "/api/",
                 "/cart/",
-                "/checkout/",
-                "/payment/",
-                "/account/",
+                "/help/",
+                "/orders/",
+                "/contact/",
+                "/about/",
+                "orders/[id]/track",
+                "orders/",
             ],
         },
-
+        
         sitemap: `${BASE_URL}/sitemap.xml`,
     };
 }
