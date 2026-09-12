@@ -1,3 +1,4 @@
+'use client';
 import { HomeIcon, Menu, Search, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -11,6 +12,7 @@ import {
 import { Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import CartIcon from "./CartIcon";
+import { useState } from "react";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -28,6 +30,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+
+    const [open, setOpen] = useState(false);
+
     return (
         <nav className="sticky top-0 left-0 right-0 z-20 w-full border-b bg-white/95 backdrop-blur-md">
             <div className="mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -35,8 +40,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-2">
 
                     {/* Mobile Menu */}
-                    <Sheet>
-
+                    <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger
                             render={
                                 <button
@@ -53,7 +57,6 @@ export default function Navbar() {
                             side="left"
                             className="w-70 sm:w-[320px]"
                         >
-
                             <SheetHeader className="border-b pb-5">
                                 <SheetTitle
                                     className="flex items-center gap-3 text-xl"
@@ -69,23 +72,19 @@ export default function Navbar() {
                                 </SheetTitle>
                             </SheetHeader>
 
-                            {/* Mobile Navigation */}
                             <div className="flex flex-col gap-2 px-4 pt-6">
-
                                 {navLinks.map((link) => (
                                     <Link
                                         key={link.title}
                                         href={link.href}
+                                        onClick={() => setOpen(false)}
                                         className="rounded-md px-4 py-3 text-base font-medium text-gray-700 transition hover:bg-amber-800 hover:text-white"
                                     >
                                         {link.title}
                                     </Link>
                                 ))}
-
                             </div>
-
                         </SheetContent>
-
                     </Sheet>
 
                     <Link href="/" className="flex items-center gap-2">
