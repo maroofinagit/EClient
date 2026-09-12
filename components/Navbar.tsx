@@ -19,6 +19,7 @@ const playfair = Playfair_Display({
 });
 
 const navLinks = [
+    { title: "Admin", href: "https://cybermartadmin.vercel.app" },
     { title: "Home", href: "/" },
     { title: "About", href: "/about" },
     { title: "Products", href: "/products" },
@@ -110,6 +111,8 @@ export default function Navbar() {
                         <Link
                             key={link.title}
                             href={link.href}
+                            target={link.href.startsWith("http") ? "_blank" : "_self"}
+                            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                             className="text-sm text-gray-700 transition hover:text-gray-900 lg:text-base"
                         >
                             {link.title}
